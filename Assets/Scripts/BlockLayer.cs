@@ -18,18 +18,9 @@ public class BlockLayer : MonoBehaviour{
 
         APIData studentData = APIInformationManager.GetData();
 
-        GameObject block = blocksPrefabs[0];
-        if(studentData.Mastery == 1){
-
-            block = blocksPrefabs[1];
-        }else if(studentData.Mastery == 2){
-        
-            block = blocksPrefabs[2];
-        }
-
         for(int i = 0; i < blocksPrefabs.Length; i++){
 
-            GameObject instantiatedBlock = Instantiate(block);
+            GameObject instantiatedBlock = Instantiate(blocksPrefabs[Random.Range(0, blocksPrefabs.Length)]);
 
             instantiatedBlock.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spacingZ);
             instantiatedBlock.transform.parent = transform;
