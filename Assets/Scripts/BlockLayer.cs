@@ -18,9 +18,18 @@ public class BlockLayer : MonoBehaviour{
 
         APIData studentData = APIInformationManager.GetData();
 
-        for(int i = 0; i < blocksPrefabs.Length; i++){
+        GameObject block = blocksPrefabs[0];
+        if (studentData.Mastery == 1){
 
-            GameObject instantiatedBlock = Instantiate(blocksPrefabs[Random.Range(0, blocksPrefabs.Length)]);
+            block = blocksPrefabs[1];
+        }else if (studentData.Mastery == 2){
+
+            block = blocksPrefabs[2];
+        }
+
+        for (int i = 0; i < blocksPrefabs.Length; i++){
+
+            GameObject instantiatedBlock = Instantiate(block);
 
             instantiatedBlock.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spacingZ);
             instantiatedBlock.transform.parent = transform;
@@ -28,7 +37,7 @@ public class BlockLayer : MonoBehaviour{
             spacingZ++;
         }
 
-        if(isParalel == false){
+        if (isParalel == false){
 
             transform.Rotate(new Vector3(0, 90, 0));
         }
